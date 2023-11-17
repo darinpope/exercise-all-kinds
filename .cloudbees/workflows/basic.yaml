@@ -8,7 +8,7 @@ on:
 jobs:
   build:
     steps:
-      - uses: docker://golang:1.21-alpine3.17
+      - uses: docker://cgr.dev/chainguard/go:latest
         name: build
         kind: build
         shell: sh
@@ -16,7 +16,7 @@ jobs:
           echo "build"
   test:
     steps:
-      - uses: docker://golang:1.21-alpine3.17
+      - uses: docker://cgr.dev/chainguard/go:latest
         kind: test
         name: test
         shell: sh
@@ -26,7 +26,7 @@ jobs:
       - build
   scan:
     steps:
-      - uses: docker://golang:1.21-alpine3.17
+      - uses: docker://cgr.dev/chainguard/go:latest
         name: scan
         kind: scan
         shell: sh
@@ -36,7 +36,7 @@ jobs:
       - test
   deploy:
     steps:
-      - uses: docker://golang:1.21-alpine3.17
+      - uses: docker://cgr.dev/chainguard/go:latest
         kind: deploy
         name: deploy
         shell: sh
