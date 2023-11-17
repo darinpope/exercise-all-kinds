@@ -27,11 +27,16 @@ jobs:
   scan:
     steps:
       - uses: docker://golang:1.21-alpine3.17
-        kind: scan
         name: scan
+        kind: scan
         shell: sh
         run: |
           echo "scan"
+      - uses: cloudbees-io/trivy-scan-container@v1
+        kind: scan
+        with:
+          image-location: hello-world
+          image-tag: latest
     needs:
       - test
   deploy:
