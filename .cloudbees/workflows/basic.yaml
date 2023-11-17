@@ -1,0 +1,46 @@
+apiVersion: automation.cloudbees.io/v1alpha1
+kind: workflow
+name: My automation
+on:
+  push:
+    branches:
+      - "**"
+jobs:
+  build:
+    steps:
+      - uses: docker://golang:1.21-alpine3.17
+        name: build
+        kind: build
+        shell: sh
+        run: |
+          echo "build"
+  test:
+    steps:
+      - uses: docker://golang:1.21-alpine3.17
+        kind: test
+        name: test
+        shell: sh
+        run: |
+          echo "test"
+    needs:
+      - build
+  scan:
+    steps:
+      - uses: docker://golang:1.21-alpine3.17
+        kind: scan
+        name: scan
+        shell: sh
+        run: |
+          echo "scan"
+    needs:
+      - test
+  deploy:
+    steps:
+      - uses: docker://golang:1.21-alpine3.17
+        kind: deploy
+        name: deploy
+        shell: sh
+        run: |
+          echo "deploy"
+    needs:
+      - scan
