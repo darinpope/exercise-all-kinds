@@ -32,11 +32,6 @@ jobs:
         shell: sh
         run: |
           echo "scan"
-      - uses: cloudbees-io/trivy-scan-container@v1
-        kind: scan
-        with:
-          image-location: public.ecr.aws/docker/library/hello-world
-          image-tag: latest
     needs:
       - test
   deploy:
