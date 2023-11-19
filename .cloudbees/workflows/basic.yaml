@@ -35,10 +35,11 @@ jobs:
     needs:
       - test
   deploy:
+    environment: Production
     steps:
       - uses: docker://cgr.dev/chainguard/go:latest
-        kind: deploy
         name: deploy
+        kind: deploy
         shell: sh
         run: |
           echo "deploy"
