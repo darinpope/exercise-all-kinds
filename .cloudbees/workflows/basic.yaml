@@ -8,7 +8,7 @@ on:
 jobs:
   build:
     steps:
-      - uses: docker://cgr.dev/chainguard/go:latest
+      - uses: docker://cgr.dev/chainguard/wolfi-base:latest
         name: build
         kind: build
         shell: sh
@@ -16,7 +16,7 @@ jobs:
           echo "build"
   test:
     steps:
-      - uses: docker://cgr.dev/chainguard/go:latest
+      - uses: docker://cgr.dev/chainguard/wolfi-base:latest
         kind: test
         name: test
         shell: sh
@@ -26,7 +26,7 @@ jobs:
       - build
   scan:
     steps:
-      - uses: docker://cgr.dev/chainguard/go:latest
+      - uses: docker://cgr.dev/chainguard/wolfi-base:latest
         name: scan
         kind: scan
         shell: sh
@@ -37,7 +37,7 @@ jobs:
   deploy-prod:
     environment: Production
     steps:
-      - uses: docker://cgr.dev/chainguard/go:latest
+      - uses: docker://cgr.dev/chainguard/wolfi-base:latest
         name: deploy
         kind: deploy
         shell: sh
@@ -48,7 +48,7 @@ jobs:
   deploy-pre-prod:
     environment: PreProduction
     steps:
-      - uses: docker://cgr.dev/chainguard/go:latest
+      - uses: docker://cgr.dev/chainguard/wolfi-base:latest
         name: deploy
         kind: deploy
         shell: sh
@@ -59,7 +59,7 @@ jobs:
   deploy-uat:
     environment: UAT
     steps:
-      - uses: docker://cgr.dev/chainguard/go:latest
+      - uses: docker://cgr.dev/chainguard/wolfi-base:latest
         name: deploy
         kind: deploy
         shell: sh
@@ -70,7 +70,7 @@ jobs:
   deploy-integration:
     environment: Integration
     steps:
-      - uses: docker://cgr.dev/chainguard/go:latest
+      - uses: docker://cgr.dev/chainguard/wolfi-base:latest
         name: deploy
         kind: deploy
         shell: sh
