@@ -34,7 +34,7 @@ jobs:
           echo "scan"
     needs:
       - test
-  deploy:
+  deploy-prod:
     environment: Production
     steps:
       - uses: docker://cgr.dev/chainguard/go:latest
@@ -42,6 +42,39 @@ jobs:
         kind: deploy
         shell: sh
         run: |
-          echo "deploy"
+          echo "deploy Production"
+    needs:
+      - scan
+  deploy-pre-prod:
+    environment: PreProduction
+    steps:
+      - uses: docker://cgr.dev/chainguard/go:latest
+        name: deploy
+        kind: deploy
+        shell: sh
+        run: |
+          echo "deploy PreProduction"
+    needs:
+      - scan
+  deploy-uat:
+    environment: UAT
+    steps:
+      - uses: docker://cgr.dev/chainguard/go:latest
+        name: deploy
+        kind: deploy
+        shell: sh
+        run: |
+          echo "deploy UAT"
+    needs:
+      - scan
+  deploy-integration:
+    environment: Integration
+    steps:
+      - uses: docker://cgr.dev/chainguard/go:latest
+        name: deploy
+        kind: deploy
+        shell: sh
+        run: |
+          echo "deploy Integration"
     needs:
       - scan
