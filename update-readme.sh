@@ -2,8 +2,8 @@
 cd /Users/dpope/github/exercise-all-kinds
 
 git checkout main
-echo -e "\n" >> README.md
-echo $(date) >> README.md
+# echo -e "\n" >> README.md
+echo $(date +"%s") >> README.md
 git add README.md
 git commit -m "test"
 git push
